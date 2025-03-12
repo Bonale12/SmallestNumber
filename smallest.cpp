@@ -10,9 +10,9 @@ int main() {
     cout << "Enter the number of elements: ";
     cin >> size;
     
-    if (size <= 0) {
-        cout << "Invalid size!" << endl;
-        return 1;  // Exit if invalid size is entered
+    if (cin.fail() || size <= 0) {
+        cout << "Invalid size or input!" << endl;
+        return 1;  // Exit if invalid size or non-integer input is entered
     }
     
     int number;
@@ -22,6 +22,11 @@ int main() {
     for (int i = 0; i < size; i++) {
         cout << "Enter number " << i + 1 << ": ";
         cin >> number;
+        
+        if (cin.fail()) {
+            cout << "Invalid input! Please enter a valid integer." << endl;
+            return 1;  // Exit if non-integer input is entered
+        }
         
         if (number < smallest) {
             smallest = number;  // Update smallest if the current number is smaller
